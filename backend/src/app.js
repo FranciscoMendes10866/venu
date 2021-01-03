@@ -4,7 +4,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
 
-import { AuthRouter, QuestionRouter, ThreadRouter } from './routes'
+import { AuthRouter, CommentRouter, QuestionRouter, ThreadRouter } from './routes'
 
 const app = express()
 
@@ -15,6 +15,7 @@ app.use(morgan('dev'))
 app.use(compression())
 app.use('/api/auth', AuthRouter)
 app.use('/api/threads', ThreadRouter)
-app.use('/api/question', QuestionRouter)
+app.use('/api/questions', QuestionRouter)
+app.use('/api/comments', CommentRouter)
 
 export default app

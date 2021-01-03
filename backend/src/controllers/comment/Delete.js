@@ -1,17 +1,16 @@
 import prisma from '../../utils/PrismaClient'
 
-const DeleteQuestion = async (req, res) => {
+const DeleteComment = async (req, res) => {
     const { id } = req.params
-    const question = await prisma.question.delete({
+    const comment = await prisma.comment.delete({
         where: {
             id
         }
     })
     return res.json({
         success: true,
-        question
+        comment
     })
 }
 
-
-export default DeleteQuestion
+export default DeleteComment

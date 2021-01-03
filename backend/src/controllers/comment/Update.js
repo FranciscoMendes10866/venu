@@ -1,8 +1,8 @@
 import prisma from '../../utils/PrismaClient'
 
-const UpdateQuestion = async (req, res) => {
+const UpdateComment = async (req, res) => {
     const { id } = req.params
-    const question = await prisma.question.update({
+    const comment = await prisma.comment.update({
         where: {
             id
         },
@@ -12,9 +12,8 @@ const UpdateQuestion = async (req, res) => {
     })
     return res.json({
         success: true,
-        question
+        comment
     })
 }
 
-
-export default UpdateQuestion
+export default UpdateComment
