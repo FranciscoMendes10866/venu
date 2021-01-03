@@ -30,8 +30,8 @@ const SignIn = async (req, res) => {
         success: true,
         user: {
             token,
-            username: create.username,
-            id: create.id
+            username: exists.username,
+            id: exists.id
         }
     })
 }
