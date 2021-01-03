@@ -1,7 +1,6 @@
 import { Router } from 'express'
 
-import { CreateThread, DeleteThread, FindThreads } from '../controllers'
-import FindThreads from '../controllers/thread/Find'
+import { CreateThread, FindThreads } from '../controllers'
 import { AuthGuard } from '../guards'
 
 const router = new Router()
