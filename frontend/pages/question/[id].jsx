@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Navbar } from '../../components'
 
@@ -6,6 +7,9 @@ const Question = () => {
     const { id } = router.query
     return (
         <>
+            <Head>
+                <title>Question | VENU</title>
+            </Head>
             <section
                 className="hero is-fullheight"
                 style={{
@@ -27,9 +31,6 @@ const Question = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="hero-foot has-text-centered py-2 has-text-white">
-                    <p>Made with ❤️ by Francisco Mendes.</p>
                 </div>
             </section>
         </>

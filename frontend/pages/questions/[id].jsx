@@ -1,21 +1,24 @@
-import Link from 'next/link'
 import Head from 'next/head'
-import { Navbar } from '../components'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Navbar } from '../../components'
 
-const Threads = () => {
+const Questions = () => {
     const data = {
         "success": true,
-        "threads": [
+        "questions": [
             {
-                "id": "7c5d0784-fbff-4e80-aff8-4bf8002f25f1",
-                "name": "Anime"
+                "id": "c11d04ef-51e0-4a46-b21b-4829db6fd5e3",
+                "title": "Bleach: Sennen Kessen-hen (S2)"
             }
         ]
     }
+    const router = useRouter()
+    const { id } = router.query
     return (
         <>
             <Head>
-                <title>Threads | VENU</title>
+                <title>Questions | VENU</title>
             </Head>
             <section
                 className="hero is-fullheight"
@@ -32,11 +35,12 @@ const Threads = () => {
                     <div className="container">
                         <div className="columns is-justify-content-center">
                             <div className="column is-8">
-                                {data.threads.map(thread => {
+                                {data.questions.map(question => {
                                     return (
-                                        <Link href={"/questions/" + thread.id}>
+                                        <Link href={'/question/' + question.id}>
                                             <div className="card p-4">
-                                                <strong>Thread Name:</strong> {thread.name}
+                                                <strong>Selected Thread ID:</strong> {id} <br /><br />
+                                                <strong>Question Title:</strong> {question.title}
                                             </div>
                                         </Link>
                                     )
@@ -53,4 +57,4 @@ const Threads = () => {
     )
 }
 
-export default Threads
+export default Questions

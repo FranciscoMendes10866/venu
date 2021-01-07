@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { SiOpenbadges } from 'react-icons/si'
 
 const Navbar = () => {
@@ -5,9 +6,11 @@ const Navbar = () => {
         <div className="hero-head">
             <nav className="navbar px-4" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <a className="navbar-item" href style={{ color: 'white', fontSize: 34 }}>
-                        <SiOpenbadges />
-                    </a>
+                    <div className="navbar-item" href style={{ color: 'white', fontSize: 34 }}>
+                        <Link href="/threads">
+                            <SiOpenbadges />
+                        </Link>
+                    </div>
                 </div>
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-end">
