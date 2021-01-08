@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -16,5 +18,8 @@
     "react-icons": "^4.1.0",
     "react-query": "^3.5.10",
     "zustand": "^3.2.0"
+  },
+  "devDependencies": {
+    "cypress": "^6.2.1"
   }
 }

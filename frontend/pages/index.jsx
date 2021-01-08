@@ -25,6 +25,7 @@ const Home = () => {
                     <div className="control">
                       <input
                         className="input"
+                        id="username"
                         type="text"
                         placeholder="Type your username"
                       />
@@ -35,6 +36,7 @@ const Home = () => {
                     <div className="control">
                       <input
                         className="input"
+                        id="email"
                         type="email"
                         placeholder="Type your email"
                       />
@@ -45,6 +47,7 @@ const Home = () => {
                     <div className="control">
                       <input
                         className="input"
+                        id="password"
                         type="password"
                         placeholder="Type your password"
                       />
