@@ -25,6 +25,7 @@ const Login = () => {
                                         <div className="control">
                                             <input
                                                 className="input"
+                                                id="email"
                                                 type="email"
                                                 placeholder="Type your email"
                                             />
@@ -35,6 +36,7 @@ const Login = () => {
                                         <div className="control">
                                             <input
                                                 className="input"
+                                                id="password"
                                                 type="password"
                                                 placeholder="Type your password"
                                             />
