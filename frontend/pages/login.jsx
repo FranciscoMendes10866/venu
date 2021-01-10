@@ -1,7 +1,20 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Router from 'next/router'
+import { useState } from 'react'
 
 const Login = () => {
+    const [state, setState] = useState({
+        email: '',
+        password: ''
+    })
+    const handleOnChange = (e) => {
+        setState({ ...state, [e.target.id]: e.target.value })
+    }
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        Router.push('/threads')
+    }
     return (
         <>
             <Head>
@@ -25,6 +38,8 @@ const Login = () => {
                                         <div className="control">
                                             <input
                                                 className="input"
+                                                value={state.email}
+                                                onChange={handleOnChange}
                                                 id="email"
                                                 type="email"
                                                 placeholder="Type your email"
@@ -36,6 +51,8 @@ const Login = () => {
                                         <div className="control">
                                             <input
                                                 className="input"
+                                                value={state.password}
+                                                onChange={handleOnChange}
                                                 id="password"
                                                 type="password"
                                                 placeholder="Type your password"
@@ -44,6 +61,7 @@ const Login = () => {
                                     </div>
                                     <button
                                         className="button is-info mt-5 is-medium is-fullwidth has-text-weight-semibold"
+                                        onClick={handleOnSubmit}
                                     >
                                         Sign In
                                     </button>
