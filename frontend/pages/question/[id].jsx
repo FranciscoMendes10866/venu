@@ -1,14 +1,29 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Navbar } from '../../components'
+import { Navbar, Description, CommentList } from '../../components'
 
 const Question = () => {
+    const data = {
+        "success": true,
+        "question": {
+            "id": "c11d04ef-51e0-4a46-b21b-4829db6fd5e3",
+            "title": "Bleach: Sennen Kessen-hen (S2)",
+            "content": "Anime adaptation of the Thousand-Year Blood War arc.",
+            "Comment": [
+                {
+                    "id": "49efc5bd-ff13-4324-a7ef-86a8a679a153",
+                    "message": "I hope the animation will be fluent and beautiful.",
+                    "createdAt": "2021-01-03T18:29:00.241Z"
+                }
+            ]
+        }
+    }
     const router = useRouter()
     const { id } = router.query
     return (
         <>
             <Head>
-                <title>Question | VENU</title>
+                <title>{data.question.title} | VENU</title>
             </Head>
             <section
                 className="hero is-fullheight"
@@ -25,8 +40,11 @@ const Question = () => {
                     <div className="container">
                         <div className="columns is-justify-content-center">
                             <div className="column is-10">
-                                <div className="card p-4">
-                                    <strong>Question ID:</strong> {id}
+                                <Description question={data.question} />
+                                <div className="p-4">
+                                    {data.question.Comment.map((comment) => {
+                                        return <CommentList comment={comment} />
+                                    })}
                                 </div>
                             </div>
                         </div>
