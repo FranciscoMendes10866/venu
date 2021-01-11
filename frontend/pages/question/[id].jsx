@@ -18,10 +18,7 @@ const Question = () => {
                     "id": "49efc5bd-ff13-4324-a7ef-86a8a679a153",
                     "message": "I hope the animation will be fluent and beautiful.",
                     "createdAt": "2021-01-03T18:29:00.241Z",
-                    "User": {
-                        "id": "a233314c-d9f2-4ee6-9a41-61bb76a75b07",
-                        "username": "franciscomendes97"
-                    }
+                    "user_id": "a233314c-d9f2-4ee6-9a41-61bb76a75b07"
                 }
             ]
         }

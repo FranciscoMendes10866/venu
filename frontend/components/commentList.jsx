@@ -1,3 +1,5 @@
+import Moment from 'react-moment'
+
 const CommentList = ({ comment }) => {
     return (
         <article key={comment.id} class="media card p-4 mb-2 is-align-items-center">
@@ -12,7 +14,10 @@ const CommentList = ({ comment }) => {
                 </div>
             </div>
             <div class="media-right">
-                <button className="button is-light is-small is-warning">Edit</button>
+                <span class="button is-static is-small">
+                    <Moment date={comment.createdAt} fromNow ago />
+                </span>
+                <button className="button is-light is-small is-warning ml-3">Edit</button>
                 <button className="button is-light is-small is-danger ml-3">Delete</button>
             </div>
         </article>
