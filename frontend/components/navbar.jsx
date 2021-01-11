@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SiOpenbadges } from 'react-icons/si'
+import { GiCrumblingBall } from 'react-icons/gi'
 
 const Navbar = () => {
     return (
@@ -8,7 +8,7 @@ const Navbar = () => {
                 <div className="navbar-brand">
                     <div className="navbar-item" href style={{ color: 'white', fontSize: 34 }}>
                         <Link href="/threads">
-                            <SiOpenbadges />
+                            <GiCrumblingBall />
                         </Link>
                     </div>
                 </div>
