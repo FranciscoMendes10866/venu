@@ -21,12 +21,7 @@ const QueryQuestion = async (req, res) => {
                     id: true,
                     message: true,
                     createdAt: true,
-                    User: {
-                        select: {
-                            id: true,
-                            username: true
-                        }
-                    }
+                    user_id: true
                 }
             }
         }
