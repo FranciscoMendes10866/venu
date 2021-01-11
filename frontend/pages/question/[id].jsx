@@ -9,11 +9,19 @@ const Question = () => {
             "id": "c11d04ef-51e0-4a46-b21b-4829db6fd5e3",
             "title": "Bleach: Sennen Kessen-hen (S2)",
             "content": "Anime adaptation of the Thousand-Year Blood War arc.",
+            "User": {
+                "id": "a233314c-d9f2-4ee6-9a41-61bb76a75b07",
+                "username": "franciscomendes97"
+            },
             "Comment": [
                 {
                     "id": "49efc5bd-ff13-4324-a7ef-86a8a679a153",
                     "message": "I hope the animation will be fluent and beautiful.",
-                    "createdAt": "2021-01-03T18:29:00.241Z"
+                    "createdAt": "2021-01-03T18:29:00.241Z",
+                    "User": {
+                        "id": "a233314c-d9f2-4ee6-9a41-61bb76a75b07",
+                        "username": "franciscomendes97"
+                    }
                 }
             ]
         }
