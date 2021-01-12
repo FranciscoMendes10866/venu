@@ -31,7 +31,7 @@ const CCommentModal = ({ questionId, questionTitle }) => {
                         <textarea class="textarea" placeholder="Write your comment here."></textarea>
                     </section>
                     <footer className="modal-card-foot">
-                        <button className="button is-success">Comment</button>
+                        <button className="button is-info">Comment</button>
                         <button className="button" onClick={handleShow}>Cancel</button>
                     </footer>
                 </div>
