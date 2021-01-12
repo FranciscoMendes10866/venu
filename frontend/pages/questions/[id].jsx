@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Navbar, QuestionsBox } from '../../components'
+import { Navbar, QuestionsBox, CQuestionModal } from '../../components'
 
 const Questions = () => {
     const data = {
@@ -37,6 +37,7 @@ const Questions = () => {
                     <div className="container">
                         <div className="columns is-justify-content-center">
                             <div className="column is-8">
+                                <CQuestionModal threadId={id} />
                                 {data.questions.Question.map(question => {
                                     return <QuestionsBox question={question} threadName={data.questions.name} />
                                 })}
