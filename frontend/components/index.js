@@ -1,3 +1,5 @@
 export { default as Navbar } from './navbar'
 export { default as Description } from './description'
 export { default as CommentList } from './commentList'
+export { default as ThreadBox } from './threadBox'
+export { default as QuestionsBox } from './questionsBox'

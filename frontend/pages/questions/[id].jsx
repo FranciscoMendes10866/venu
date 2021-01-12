@@ -1,18 +1,20 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Navbar } from '../../components'
+import { Navbar, QuestionsBox } from '../../components'
 
 const Questions = () => {
     const data = {
         "success": true,
-        "questions": [
+        "questions": {
+          "name": "Anime",
+          "Question": [
             {
-                "id": "c11d04ef-51e0-4a46-b21b-4829db6fd5e3",
-                "title": "Bleach: Sennen Kessen-hen (S2)"
+              "id": "c11d04ef-51e0-4a46-b21b-4829db6fd5e3",
+              "title": "Bleach: Sennen Kessen-hen (S2)"
             }
-        ]
-    }
+          ]
+        }
+      }
     const router = useRouter()
     const { id } = router.query
     return (
@@ -35,15 +37,8 @@ const Questions = () => {
                     <div className="container">
                         <div className="columns is-justify-content-center">
                             <div className="column is-8">
-                                {data.questions.map(question => {
-                                    return (
-                                        <Link href={'/question/' + question.id}>
-                                            <div className="card p-4">
-                                                <strong>Selected Thread ID:</strong> {id} <br /><br />
-                                                <strong>Question Title:</strong> {question.title}
-                                            </div>
-                                        </Link>
-                                    )
+                                {data.questions.Question.map(question => {
+                                    return <QuestionsBox question={question} threadName={data.questions.name} />
                                 })}
                             </div>
                         </div>

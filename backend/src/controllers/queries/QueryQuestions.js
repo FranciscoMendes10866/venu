@@ -7,6 +7,7 @@ const QueryQuestions = async (req, res) => {
             id
         },
         select: {
+            name: true,
             Question: {
                 select: {
                     id: true,
@@ -17,7 +18,7 @@ const QueryQuestions = async (req, res) => {
     })
     return res.json({
         success: true,
-        questions: find.Question
+        questions: find
     })
 }
 
