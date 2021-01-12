@@ -1,6 +1,5 @@
-import Link from 'next/link'
 import Head from 'next/head'
-import { Navbar } from '../components'
+import { Navbar, ThreadBox } from '../components'
 
 const Threads = () => {
     const data = {
@@ -12,6 +11,7 @@ const Threads = () => {
             }
         ]
     }
+    const count = data.threads.length
     return (
         <>
             <Head>
@@ -33,13 +33,7 @@ const Threads = () => {
                         <div className="columns is-justify-content-center">
                             <div className="column is-8">
                                 {data.threads.map(thread => {
-                                    return (
-                                        <Link href={"/questions/" + thread.id}>
-                                            <div className="card p-4">
-                                                <strong>Thread Name:</strong> {thread.name}
-                                            </div>
-                                        </Link>
-                                    )
+                                    return <ThreadBox thread={thread} count={count} />
                                 })}
                             </div>
                         </div>

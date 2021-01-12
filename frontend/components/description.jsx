@@ -1,7 +1,7 @@
 const Description = ({ question }) => {
     return (
         <>
-            <article class="media card p-4 mb-6">
+            <article class="media card p-4 mb-5">
                 <figure class="media-left">
                     <p class="image is-64x64">
                         <img src="https://bit.ly/38xqVO3" />
