@@ -16,9 +16,9 @@ const ThreadBox = ({ thread, count }) => {
                     </div>
                     <div className="media-right">
                         {count === 1 ? (
-                            <span class="tag is-info is-light p-4">{count} question</span>
+                            <span className="tag is-info is-light p-4">{count} question</span>
                         ) : (
-                                <span class="tag is-info is-light p-4">{count} questions</span>
+                                <span className="tag is-info is-light p-4">{count} questions</span>
                             )}
                     </div>
                 </article>

@@ -1,3 +1,5 @@
+import { CCommentModal, EQuestionModal, DQuestionModal } from '.'
+
 const Description = ({ question }) => {
     return (
         <>
@@ -19,13 +21,13 @@ const Description = ({ question }) => {
                 </div>
                 <div class="media-right is-flex-direction-column">
                     <div>
-                        <button className="button is-light is-small is-warning">Edit</button>
+                        <EQuestionModal editSelected={question} />
                     </div>
                     <div>
-                        <button className="button is-light is-small is-danger">Delete</button>
+                        <DQuestionModal deleteSelected={question} />
                     </div>
                     <div>
-                        <button className="button is-light is-small is-info">Comment</button>
+                        <CCommentModal questionId={question.id} questionTitle={question.title} />
                     </div>
                 </div>
             </article>
