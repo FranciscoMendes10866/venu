@@ -1,6 +1,7 @@
 import Moment from 'react-moment'
+import { DCommentModal, ECommentModal } from '.'
 
-const CommentList = ({ comment }) => {
+const CommentList = ({ comment, questionTitle }) => {
     return (
         <article key={comment.id} class="media card p-4 mb-2 is-align-items-center">
             <div class="media-left">
@@ -17,8 +18,8 @@ const CommentList = ({ comment }) => {
                 <span class="button is-static is-small">
                     <Moment date={comment.createdAt} fromNow ago />
                 </span>
-                <button className="button is-light is-small is-warning ml-3">Edit</button>
-                <button className="button is-light is-small is-danger ml-3">Delete</button>
+                <ECommentModal editSelected={comment} questionTitle={questionTitle} />
+                <DCommentModal deleteSelected={comment.id} />
             </div>
         </article>
     )

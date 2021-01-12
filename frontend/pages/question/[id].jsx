@@ -48,7 +48,7 @@ const Question = () => {
                                 <Description question={data.question} />
                                 <div className="p-4">
                                     {data.question.Comment.map((comment) => {
-                                        return <CommentList comment={comment} />
+                                        return <CommentList comment={comment} questionTitle={data.question.title} />
                                     })}
                                 </div>
                             </div>
