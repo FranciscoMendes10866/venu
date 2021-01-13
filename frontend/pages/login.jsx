@@ -3,7 +3,11 @@ import Link from 'next/link'
 import Router from 'next/router'
 import { useState } from 'react'
 
+import { useStore } from '../store'
+import axios from '../utils/axios'
+
 const Login = () => {
+    const { setToken, setUsername, setCurrentUserId } = useStore()
     const [state, setState] = useState({
         email: '',
         password: ''
@@ -11,9 +15,22 @@ const Login = () => {
     const handleOnChange = (e) => {
         setState({ ...state, [e.target.id]: e.target.value })
     }
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault()
-        Router.push('/threads')
+        await axios.post('auth/sign-in', state)
+            .then(({ data }) => {
+                if (data.success === true) {
+                    setToken(data.user.token)
+                    setUsername(data.user.username)
+                    setCurrentUserId(data.user.id)
+                    Router.push('/threads')
+                }
+            })
+            .catch(err => console.log(err))
+        setState({
+            email: '',
+            password: ''
+        })
     }
     return (
         <>

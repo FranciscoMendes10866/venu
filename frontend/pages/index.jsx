@@ -3,7 +3,11 @@ import Link from 'next/link'
 import Router from 'next/router'
 import { useState } from 'react'
 
+import { useStore } from '../store'
+import axios from '../utils/axios'
+
 const Home = () => {
+  const { setToken, setUsername, setCurrentUserId } = useStore()
   const [state, setState] = useState({
     username: '',
     email: '',
@@ -12,9 +16,23 @@ const Home = () => {
   const handleOnChange = (e) => {
     setState({ ...state, [e.target.id]: e.target.value })
   }
-  const handleOnSumbit = (e) => {
+  const handleOnSumbit = async (e) => {
     e.preventDefault()
-    Router.push('/login')
+    await axios.post('auth/sign-up', state)
+      .then(({ data }) => {
+        if (data.success === true) {
+          setToken(data.user.token)
+          setUsername(data.user.username)
+          setCurrentUserId(data.user.id)
+          Router.push('/login')
+        }
+      })
+      .catch(err => console.log(err))
+    setState({
+      username: '',
+      email: '',
+      password: ''
+    })
   }
   return (
     <>
