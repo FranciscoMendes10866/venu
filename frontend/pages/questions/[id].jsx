@@ -13,7 +13,8 @@ const Questions = () => {
     const {
         data: response,
         isLoading: loading,
-        isError: error
+        isError: error,
+        refetch
     } = useQuery(['questions', { token: stateToken, threadId: id }], QueryQuestions)
     if (loading) return <p>Loading</p>
     if (error) return <p>Error</p>
@@ -37,7 +38,7 @@ const Questions = () => {
                     <div className="container">
                         <div className="columns is-justify-content-center">
                             <div className="column is-8">
-                                <CQuestionModal threadId={id} />
+                                <CQuestionModal threadId={id} refetchQuestions={refetch} />
                                 {response.data.questions.Question.map(question => {
                                     return <QuestionsBox
                                         question={question}

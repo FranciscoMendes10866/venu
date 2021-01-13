@@ -13,7 +13,8 @@ const Question = () => {
     const {
         data: response,
         isLoading: loading,
-        isError: error
+        isError: error,
+        refetch
     } = useQuery(['question', { token: stateToken, questionId: id }], QueryQuestion)
     if (loading) return <p>Loading</p>
     if (error) return <p>Error</p>
@@ -37,12 +38,13 @@ const Question = () => {
                     <div className="container">
                         <div className="columns is-justify-content-center">
                             <div className="column is-10">
-                                <Description question={response.data.question} />
+                                <Description question={response.data.question} refetchQuestion={refetch} />
                                 <div className="p-4">
                                     {response.data.question.Comment.map((comment) => {
                                         return <CommentList
                                             comment={comment}
                                             questionTitle={response.data.question.title}
+                                            refetchQuestion={refetch}
                                         />
                                     })}
                                 </div>

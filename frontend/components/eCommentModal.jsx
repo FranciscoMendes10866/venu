@@ -1,10 +1,29 @@
 import { useState } from 'react'
+import { useMutation } from 'react-query'
 
-const ECommentModal = ({ editSelected, questionTitle }) => {
+import { useStore } from '../store'
+import { UpdateComment } from '../handlers'
+
+const ECommentModal = ({ editSelected, questionTitle, refetchQuestion }) => {
+    const stateToken = useStore(state => state.token)
     const [show, setShow] = useState(false)
     const [form, setForm] = useState({
         message: editSelected.message
     })
+    const { mutate } = useMutation(UpdateComment, {
+        onSuccess: () => {
+            refetchQuestion()
+        }
+    })
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        mutate({
+            token: stateToken,
+            body: form,
+            commentId: editSelected.id
+        })
+        setShow(!show)
+    }
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.id]: e.target.value })
     }
@@ -44,7 +63,7 @@ const ECommentModal = ({ editSelected, questionTitle }) => {
                         ></textarea>
                     </section>
                     <footer className="modal-card-foot">
-                        <button className="button is-warning">Edit</button>
+                        <button className="button is-warning" onClick={handleOnSubmit}>Edit</button>
                         <button className="button" onClick={handleShow}>Cancel</button>
                     </footer>
                 </div>

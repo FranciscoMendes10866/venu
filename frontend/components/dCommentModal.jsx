@@ -1,7 +1,25 @@
 import { useState } from 'react'
+import { useMutation } from 'react-query'
 
-const DQuestionModal = ({ deleteSelected }) => {
+import { useStore } from '../store'
+import { DeleteComment } from '../handlers'
+
+const DQuestionModal = ({ deleteSelected, refetchQuestion }) => {
+    const stateToken = useStore(state => state.token)
     const [show, setShow] = useState(false)
+    const { mutate } = useMutation(DeleteComment, {
+        onSuccess: () => {
+            refetchQuestion()
+        }
+    })
+    const handleDelete = (e) => {
+        e.preventDefault()
+        mutate({
+            commentId: deleteSelected,
+            token: stateToken
+        })
+        setShow(!show)
+    }
     const handleShow = (e) => {
         e.preventDefault()
         setShow(!show)
@@ -28,7 +46,7 @@ const DQuestionModal = ({ deleteSelected }) => {
                         <p>Are you sure you want to delete your comment?</p>
                     </section>
                     <footer className="modal-card-foot">
-                        <button className="button is-danger">Yes</button>
+                        <button className="button is-danger" onClick={handleDelete}>Yes</button>
                         <button className="button" onClick={handleShow}>Cancel</button>
                     </footer>
                 </div>
