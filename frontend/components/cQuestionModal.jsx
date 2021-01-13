@@ -1,11 +1,34 @@
 import { useState } from 'react'
+import { useMutation } from 'react-query'
 
-const CQuestionModal = ({ threadId }) => {
+import { useStore } from '../store'
+import { CreateQuestion } from '../handlers'
+
+const CQuestionModal = ({ threadId, refetchQuestions }) => {
+    const stateToken = useStore(state => state.token)
     const [show, setShow] = useState(false)
     const [form, setForm] = useState({
         title: '',
         content: ''
     })
+    const { mutate } = useMutation(CreateQuestion, {
+        onSuccess: () => {
+            refetchQuestions()
+        }
+    })
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        mutate({
+            threadId: threadId,
+            body: form,
+            token: stateToken
+        })
+        setForm({
+            title: '',
+            content: ''
+        })
+        setShow(!show)
+    }
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.id]: e.target.value })
     }
@@ -61,7 +84,7 @@ const CQuestionModal = ({ threadId }) => {
                         ></textarea>
                     </section>
                     <footer className="modal-card-foot">
-                        <button className="button is-success">Create</button>
+                        <button className="button is-success" onClick={handleOnSubmit}>Create</button>
                         <button className="button" onClick={handleCancel}>Cancel</button>
                     </footer>
                 </div>

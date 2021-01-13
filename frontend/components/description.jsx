@@ -1,6 +1,6 @@
 import { CCommentModal, EQuestionModal, DQuestionModal } from '.'
 
-const Description = ({ question }) => {
+const Description = ({ question, refetchQuestion }) => {
     return (
         <>
             <article class="media card p-4 mb-5">
@@ -21,13 +21,17 @@ const Description = ({ question }) => {
                 </div>
                 <div class="media-right is-flex-direction-column">
                     <div>
-                        <EQuestionModal editSelected={question} />
+                        <EQuestionModal editSelected={question} refetchQuestion={refetchQuestion} />
                     </div>
                     <div>
-                        <DQuestionModal deleteSelected={question} />
+                        <DQuestionModal deleteSelected={question} refetchQuestion={refetchQuestion} />
                     </div>
                     <div>
-                        <CCommentModal questionId={question.id} questionTitle={question.title} />
+                        <CCommentModal
+                            question={question}
+                            questionTitle={question.title}
+                            refetchQuestion={refetchQuestion}
+                        />
                     </div>
                 </div>
             </article>

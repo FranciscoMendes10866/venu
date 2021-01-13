@@ -1,11 +1,30 @@
 import { useState } from 'react'
+import { useMutation } from 'react-query'
 
-const EQuestionModal = ({ editSelected }) => {
+import { useStore } from '../store'
+import { UpdateQuestion } from '../handlers'
+
+const EQuestionModal = ({ editSelected, refetchQuestion }) => {
+    const stateToken = useStore(state => state.token)
     const [show, setShow] = useState(false)
     const [form, setForm] = useState({
         title: editSelected.title,
         content: editSelected.content
     })
+    const { mutate } = useMutation(UpdateQuestion, {
+        onSuccess: () => {
+            refetchQuestion()
+        }
+    })
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        mutate({
+            questionId: editSelected.id,
+            body: form,
+            token: stateToken
+        })
+        setShow(!show)
+    }
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.id]: e.target.value })
     }
@@ -53,7 +72,7 @@ const EQuestionModal = ({ editSelected }) => {
                         ></textarea>
                     </section>
                     <footer className="modal-card-foot">
-                        <button className="button is-warning">Edit</button>
+                        <button className="button is-warning" onClick={handleSubmit}>Edit</button>
                         <button className="button" onClick={handleShow}>Cancel</button>
                     </footer>
                 </div>
