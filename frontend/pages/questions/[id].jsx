@@ -1,22 +1,22 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useQuery } from 'react-query'
+
 import { Navbar, QuestionsBox, CQuestionModal } from '../../components'
+import { useStore } from '../../store'
+import { QueryQuestions } from '../../handlers'
 
 const Questions = () => {
-    const data = {
-        "success": true,
-        "questions": {
-          "name": "Anime",
-          "Question": [
-            {
-              "id": "c11d04ef-51e0-4a46-b21b-4829db6fd5e3",
-              "title": "Bleach: Sennen Kessen-hen (S2)"
-            }
-          ]
-        }
-      }
     const router = useRouter()
     const { id } = router.query
+    const stateToken = useStore(state => state.token)
+    const {
+        data: response,
+        isLoading: loading,
+        isError: error
+    } = useQuery(['questions', { token: stateToken, threadId: id }], QueryQuestions)
+    if (loading) return <p>Loading</p>
+    if (error) return <p>Error</p>
     return (
         <>
             <Head>
@@ -38,8 +38,11 @@ const Questions = () => {
                         <div className="columns is-justify-content-center">
                             <div className="column is-8">
                                 <CQuestionModal threadId={id} />
-                                {data.questions.Question.map(question => {
-                                    return <QuestionsBox question={question} threadName={data.questions.name} />
+                                {response.data.questions.Question.map(question => {
+                                    return <QuestionsBox
+                                        question={question}
+                                        threadName={response.data.questions.name}
+                                    />
                                 })}
                             </div>
                         </div>

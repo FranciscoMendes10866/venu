@@ -1,17 +1,15 @@
 import Head from 'next/head'
+import { useQuery } from 'react-query'
+
 import { Navbar, ThreadBox } from '../components'
+import { useStore } from '../store'
+import { QueryThreads } from '../handlers'
 
 const Threads = () => {
-    const data = {
-        "success": true,
-        "threads": [
-            {
-                "id": "7c5d0784-fbff-4e80-aff8-4bf8002f25f1",
-                "name": "Anime"
-            }
-        ]
-    }
-    const count = data.threads.length
+    const stateToken = useStore(state => state.token)
+    const { data: response, isLoading: loading, isError: error } = useQuery(['threads', { token: stateToken }], QueryThreads)
+    if (loading) return <p>Loading</p>
+    if (error) return <p>Error</p>
     return (
         <>
             <Head>
@@ -32,8 +30,12 @@ const Threads = () => {
                     <div className="container">
                         <div className="columns is-justify-content-center">
                             <div className="column is-8">
-                                {data.threads.map(thread => {
-                                    return <ThreadBox thread={thread} count={count} />
+                                {response.data.threads.map(thread => {
+                                    return <ThreadBox
+                                        key={thread.id}
+                                        thread={thread}
+                                        count={response.data.threads.length}
+                                    />
                                 })}
                             </div>
                         </div>
