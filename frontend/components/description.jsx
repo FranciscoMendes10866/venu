@@ -1,6 +1,9 @@
 import { CCommentModal, EQuestionModal, DQuestionModal } from '.'
 
+import { useStore } from '../store'
+
 const Description = ({ question, refetchQuestion }) => {
+    const currentUserId = useStore(state => state.currentUserId)
     return (
         <>
             <article class="media card p-4 mb-5">
@@ -20,12 +23,16 @@ const Description = ({ question, refetchQuestion }) => {
                     </div>
                 </div>
                 <div class="media-right is-flex-direction-column">
-                    <div>
-                        <EQuestionModal editSelected={question} refetchQuestion={refetchQuestion} />
-                    </div>
-                    <div>
-                        <DQuestionModal deleteSelected={question} refetchQuestion={refetchQuestion} />
-                    </div>
+                    {question.User.id === currentUserId && (
+                        <>
+                            <div>
+                                <EQuestionModal editSelected={question} refetchQuestion={refetchQuestion} />
+                            </div>
+                            <div>
+                                <DQuestionModal deleteSelected={question} refetchQuestion={refetchQuestion} />
+                            </div>
+                        </>
+                    )}
                     <div>
                         <CCommentModal
                             question={question}
