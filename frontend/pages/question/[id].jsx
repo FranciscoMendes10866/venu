@@ -20,7 +20,7 @@ const Question = () => {
     return (
         <>
             <Head>
-                <title>{response.data.question.title} | VENU</title>
+                <title>Single Question | VENU</title>
             </Head>
             <section
                 className="hero is-fullheight"
